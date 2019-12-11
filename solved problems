@@ -1,0 +1,119 @@
+def adj_sum_even(num_list):
+    even = []
+    odd = []
+    result = []
+    
+    for ele in num_list:
+        if(ele > 0):
+            if(ele % 2 == 0):
+                even.append(ele)
+            else:
+                odd.append(ele)
+    if(len(even) > len(odd)):
+        result.append(len(odd))
+        result.append(even)
+    else:
+        result.append(len(even))
+        result.append(odd)
+    return tuple(result)
+
+
+result = adj_sum_even([1,3,5,4,2])
+print(result)
+
+
+(2, [1, 3, 5])
+------------------------------------------------------------
+
+def city_with_states(input_values):
+    list_of_city = []
+    result = {}
+    
+    for key, value in input_values.items():
+        for ele in value:
+            if ele not in list_of_city:
+                list_of_city.append(ele)
+    for city in list_of_city:
+        state = []
+        for key, value in input_values.items():
+            if city in value:
+                state.append(key)
+        result[city] = state
+    return result
+
+final_output = city_with_states({'New Hampshire': ['Concord', 'Hanover'], 'Massachusetts': ['Boston', 'Concord', 'Springfield'],
+'Illinois': ['Chicago', 'Springfield', 'Peoria'] })
+print(final_output)
+
+{'Concord': ['New Hampshire', 'Massachusetts'], 'Hanover': ['New Hampshire'], 'Boston': ['Massachusetts'], 'Springfield': ['Massachusetts', 'Illinois'], 'Chicago': ['Illinois'], 'Peoria': ['Illinois']}
+------------------------------------------------------------------------------------------------------
+def check_password_strength(string):
+    check_strength = str(string)
+    special_char = "!@#$&"
+    lower_alpha = "abcdefghijklmnopqrstuvwxyz"
+    upper_alpha = lower_alpha.upper()
+    numeric = "1234567890"
+    
+
+    message1 = "weak"
+    message2 = "strong password"
+    message_special = ["The password must contain at least 1 special charecter"]
+    message_lower = ["The password must contain at least 1 lower charecter"]
+    message_upper =["The password must contain at least 1 upper charecter"]
+    message_numeric = ["The password must contain at least 1 numeric charecter"]
+    
+    for ele in check_strength:
+        count = 0
+        if ele in special_char:
+            count += 1
+        else:
+            return tuple([message1, message_special])
+        if ele in lower_alpha:
+            count += 1
+        else:
+            return tuple([message, message_lower])
+        if ele in upper_alpha:
+            count += 1
+        else:
+            return tuple([message, message_upper])
+        if ele in numeric:
+            count += 1
+        else:
+            return tuple([message, message_numeric])
+    else:
+        return message2 
+    
+            
+result = check_password_strength("Afgh5")
+print(result)
+
+('weak', ['The password must contain at least 1 special charecter'])
+--------------------------------------------------------------------------------------------
+def greatest_sub_array(list_values, n):
+    index = len(list_values)-(n-1)
+    max_value = max(list_values[0:index])
+    index = list_values.index(max_value)
+    return list_values[index:index+n]
+
+print(greatest_sub_array([1,4,3,2,5], 4))
+
+[4, 3, 2, 5
+-----------------------------------------------------------------------------------------------------
+def int_to_Roman(num):
+        value = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]
+        symbol = ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"]
+        roman_num = ''
+        i = 0
+        while  num > 0:
+            for ele in range(num // value[i]):
+                roman_num += symbol[i]
+                num -= value[i]
+            i += 1
+        return roman_num
+
+    
+result = int_to_Roman(12)
+print(result)
+
+XII
+------------------------------------------------------------------------
